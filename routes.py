@@ -20,7 +20,7 @@ def about():
 
 @app.route("/signup", methods=['GET','POST'])
 def signup():
-    if 'email' not in session:
+    if 'email' in session:
         return redirect(url_for('home'))
     form = SignupForm()
     if form.validate_on_submit():

@@ -12,4 +12,4 @@ class SignupForm(Form):
 class LoginForm(Form):
     email = StringField('Email', [DataRequired('Please enter your email address.'), Email('Please enter a valid email')])
     password = PasswordField('Password', [DataRequired('Please enter a password.')])
-    submit =SubmitField('Sign in')
+    submit = SubmitField('Sign in')

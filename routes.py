@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-from models import db, User
 from forms import SignupForm, LoginForm
 from flask_pymongo import PyMongo
+from werkzeug import generate_password_hash, check_password_hash
 
 
 app = Flask(__name__)
@@ -10,16 +10,7 @@ app.config['MONGO_URI'] = 'mongodb://user:travlog1234@ds145895.mlab.com:45895/tr
 
 mongo = PyMongo(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/learningflask'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
-
 app.secret_key = "development-key"
-@app.route("/add")
-def add():
-    user = mongo.db.users
-    user.insert({'name' : 'Anthony'})
-    return 'Added User!'
 
 @app.route("/")
 def index():
@@ -40,12 +31,7 @@ def signup():
                                 'lastname': form.last_name.data,
                                 'email': form.email.data,
                                 'password': generate_password_hash(form.password.data)})
-
-        newuser = User(form.first_name.data, form.last_name.data, form.email.data, form.password.data)
-        db.session.add(newuser)
-        db.session.commit()
-
-        session['email'] = newuser.email
+        session['email'] = form.email.data
         return redirect(url_for('home'))
 
     elif request.method == 'GET':
@@ -65,10 +51,6 @@ def login():
         password = form.password.data
         user = client.find_one({'email': email})
         if user is not None and check_password_hash(user['password'], password):
-        #
-        #
-        # user = User.query.filter_by(email=email).first()
-        # if user is not None and user.check_password(password):
             session['email'] = form.email.data
             return redirect(url_for('home'))
         else:

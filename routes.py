@@ -28,7 +28,7 @@ def index():
 @app.route("/about")
 def about():
   return render_template("about.html")
-
+  
 @app.route("/signup", methods=['GET','POST'])
 def signup():
     if 'email' in session:

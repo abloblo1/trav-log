@@ -1,14 +1,25 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from models import db, User
 from forms import SignupForm, LoginForm
+from flask_pymongo import PyMongo
+
 
 app = Flask(__name__)
+app.config['MONGO_DBNAME'] = 'trav_log'
+app.config['MONGO_URI'] = 'mongodb://user:travlog1234@ds145895.mlab.com:45895/trav_log'
+
+mongo = PyMongo(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/learningflask'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 app.secret_key = "development-key"
+@app.route("/add"):
+def add():
+    user = mongo.db.users
+    user.insert({'name' : 'Anthony'})
+    return 'Added User!'
 
 @app.route("/")
 def index():

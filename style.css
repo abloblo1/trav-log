@@ -1,0 +1,57 @@
+html *
+{
+  font-family: Times !important;
+}
+
+body
+{
+  height: 100%;
+  background-size: cover;
+
+}
+
+#nav-bar
+{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.navbar-brand img
+{
+  height: 70px;
+  padding-left: 30px;
+}
+.navbar-nav li
+{
+  padding: 0 30px;
+}
+.navbar-nav li a
+{
+  float: right;
+  text-align: left;
+}
+#nav-bar ul li a:hover
+{
+  color: #27358B!important;
+}
+.navbarNav
+{
+  background: #fff;
+}
+.navbar-toggler
+{
+  border: none!important;
+}
+.nav-link
+{
+  color: #FB0300!important;
+  font-weight: 500;
+  font-size: 24px;
+}
+#homepage
+{
+  background-image: url("C:/Users/szhou/trav-log/img/planeArt.png"),
+    url("C:/Users/szhou/trav-log/img/splashPage1.png");
+  background-repeat: no-repeat, no-repeat;
+  background-position: left, center;
+}

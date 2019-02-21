@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 app.secret_key = "development-key"
-@app.route("/add"):
+@app.route("/add")
 def add():
     user = mongo.db.users
     user.insert({'name' : 'Anthony'})
@@ -28,13 +28,19 @@ def index():
 @app.route("/about")
 def about():
   return render_template("about.html")
-  
+
 @app.route("/signup", methods=['GET','POST'])
 def signup():
     if 'email' in session:
         return redirect(url_for('home'))
     form = SignupForm()
     if form.validate_on_submit():
+        client = mongo.db.users
+        user = client.insert({'firstname': form.first_name.data,
+                                'lastname': form.last_name.data,
+                                'email': form.email.data,
+                                'password': generate_password_hash(form.password.data)})
+
         newuser = User(form.first_name.data, form.last_name.data, form.email.data, form.password.data)
         db.session.add(newuser)
         db.session.commit()
@@ -53,11 +59,16 @@ def login():
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
+        client = mongo.db.users
+
         email = form.email.data
         password = form.password.data
-
-        user = User.query.filter_by(email=email).first()
-        if user is not None and user.check_password(password):
+        user = client.find_one({'email': email})
+        if user is not None and check_password_hash(user['password'], password):
+        #
+        #
+        # user = User.query.filter_by(email=email).first()
+        # if user is not None and user.check_password(password):
             session['email'] = form.email.data
             return redirect(url_for('home'))
         else:

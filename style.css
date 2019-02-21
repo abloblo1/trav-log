@@ -6,10 +6,13 @@
 html *
 {
   font-family: Times !important;
+  font-weight: bold;
 }
 body
 {
   height: 100%;
+  background-image: url("img/Background.png");
+  background-size: cover;
 }
 #nav-bar
 {
@@ -46,7 +49,6 @@ body
 .nav-link
 {
   color: #FB0300!important;
-  font-weight: 500;
   font-size: 24px;
 }
 #splashpage
@@ -54,33 +56,32 @@ body
   padding-left: 0;
   padding-top: 0;
 }
-.col-6
-{
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: 0;
-}
 .plane-img
 {
   margin-left: -180px;
   padding-left: 0;
   padding-right:0;
-  width: 120%;
+  width: 140%;
 }
 .logo-img
 {
-  padding-left: 0;
+  margin-right: -100px;
+  margin-left: 50px;
+  padding-left: 100;
   padding-right: 0;
   width: 100%;
 }
 .tagline
 {
-  color: red;
-  font-size: 18px;
+  color: white;
+  font-size: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-right: -100px;
 }
 .special-font
 {
   font-family: myriad-pro, sans-serif!important;
   color: #1B1464;
-  font-weight:bold;
+  font-weight:bolder;
 }

@@ -1,12 +1,8 @@
-@font-face
-{
-  font-family: Coyote;
-  src: url("coyote-font/Coyote-SemiBoldDEMO.otf") format("opentype");
-}
 html *
 {
   font-family: Times !important;
 }
+
 body
 {
   height: 100%;
@@ -77,10 +73,4 @@ body
 {
   color: red;
   font-size: 18px;
-}
-.special-font
-{
-  font-family: myriad-pro, sans-serif!important;
-  color: #1B1464;
-  font-weight:bold;
 }

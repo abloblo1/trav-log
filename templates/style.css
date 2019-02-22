@@ -11,7 +11,7 @@ html *
 body
 {
   height: 100%;
-  background-image: url("img/Background.png");
+  background-image: url("static/img/BackgroundFull.png");
   background-size: cover;
 }
 #nav-bar

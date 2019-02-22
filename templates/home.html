@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <main class="hero-section">
+    <div class="container">
+      <a href="{{ url_for('logout') }}" class="btn-secondary">Log Out</a>
+    </div>
+  </main>
+  <div class="section-device">
+    <img src="static/img/splashPage1.png">
+  </div>
+{% endblock %}

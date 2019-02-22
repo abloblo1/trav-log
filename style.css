@@ -7,7 +7,7 @@ html *
 {
   font-family: Times !important;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 24px;
   height: 100%;
 }
 body
@@ -77,11 +77,6 @@ body
   color: white;
   padding-left: 0;
   padding-right: 0;
-}
-.get-started
-{
-  width: 50%;
-  height: 50%;
 }
 .special-font
 {

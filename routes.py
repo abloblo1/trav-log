@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, flash
 from forms import SignupForm, LoginForm
 from flask_pymongo import PyMongo
 from werkzeug import generate_password_hash, check_password_hash
@@ -27,12 +27,18 @@ def signup():
     form = SignupForm()
     if form.validate_on_submit():
         client = mongo.db.users
-        user = client.insert({'firstname': form.first_name.data,
+        if client.find_one({'email': form.email.data}) is not None:
+            flash('An account with that user already exists')
+            return redirect(url_for('signup'))
+            # return redirect(url_for('login'))
+        else:
+            user = client.insert({'firstname': form.first_name.data,
                                 'lastname': form.last_name.data,
                                 'email': form.email.data,
                                 'password': generate_password_hash(form.password.data)})
-        session['email'] = form.email.data
-        return redirect(url_for('home'))
+
+            session['email'] = form.email.data
+            return redirect(url_for('home'))
 
     elif request.method == 'GET':
         return render_template('signup.html', form=form)

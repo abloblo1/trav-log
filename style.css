@@ -7,12 +7,16 @@ html *
 {
   font-family: Times !important;
   font-weight: bold;
+  font-size: 22px;
+  height: 100%;
 }
 body
 {
-  height: 100%;
-  background-image: url("img/backgroundLong.png");
-  background-size: cover;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: local;
+  bottom: 0;
+  background-position: left top;
 }
 #nav-bar
 {
@@ -55,10 +59,12 @@ body
 {
   padding-left: 0;
   padding-top: 0;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 .plane-img
 {
-  width: 120%;
+  width: 110%;
 }
 .logo-img
 {
@@ -69,7 +75,6 @@ body
 .words
 {
   color: white;
-  font-size: 22px;
   padding-left: 0;
   padding-right: 0;
 }
@@ -80,16 +85,35 @@ body
 }
 .special-font
 {
-  font-family: myriad-pro, sans-serif!important;
+  font-family: myriad-pro, sans-serif !important;
   color: #1B1464;
-  font-weight:bolder;
+  font-weight: bolder;
 }
 #second-section
 {
-
+  padding-left: 0;
+  padding-top: 0;
 }
 .icon
 {
-  width: 90%;
-  height: 90%;
+  width: 98%;
+  height: 98%;
+}
+.row
+{
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+#third-section
+{
+  padding-left: 700px;
+}
+#footer
+{
+  background: #FEE56F;
+  color: #fff;
+  padding: 2px;
+  padding-top: 12px;
 }

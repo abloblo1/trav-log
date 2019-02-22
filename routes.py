@@ -78,5 +78,30 @@ def home():
 
     return render_template("home.html")
 
+@app.route("/flights", methods=['GET','POST'])
+def flights():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+    return render_template("flights.html")
+
+@app.route("/hotels", methods=['GET','POST'])
+def hotels():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+    return render_template("hotels.html")
+
+@app.route("/tourism", methods=['GET','POST'])
+def tourism():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+    return render_template("tourism.html")
+
+@app.route("/journal", methods=['GET','POST'])
+def journal():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+    return render_template("journal.html")
+
+## fix the home page
 if __name__ == "__main__":
   app.run(debug=True)

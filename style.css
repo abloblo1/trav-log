@@ -58,16 +58,17 @@ body
 }
 .plane-img
 {
-  margin-left: -180px;
-  width: 140%;
+  width: 120%;
 }
 .logo-img
 {
-  margin-right: -100px;
+  /*!margin-right: -100px;
   margin-left: 50px;
   padding-left: 100;
+  */
+  padding-left: 100px;
   padding-right: 0;
-  width: 100%;
+  width: 80%;
 }
 .tagline
 {

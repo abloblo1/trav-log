@@ -22,16 +22,16 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href=""><b>flights</b></a>
+        <a class="nav-link" href="{{ url_for('flights') }}"><b>flights</b></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href=""><b>hotel</b></a>
+        <a class="nav-link" href="{{ url_for('hotels') }}"><b>hotel</b></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href=""><b>tourism</b></a>
+        <a class="nav-link" href="{{ url_for('tourism') }}"><b>tourism</b></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href=""><b>journal</b></a>
+        <a class="nav-link" href="{{ url_for('journal') }}"><b>journal</b></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('login') }}"><b>log in</b></a>

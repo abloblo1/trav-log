@@ -1,0 +1,85 @@
+@font-face
+{
+  font-family: Coyote;
+  src: url("coyote-font/Coyote-SemiBoldDEMO.otf") format("opentype");
+}
+html *
+{
+  font-family: Times !important;
+  font-weight: bold;
+}
+body
+{
+  height: 100%;
+  background-image: url("img/Background.png");
+  background-size: cover;
+}
+#nav-bar
+{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.navbar-brand img
+{
+  height: 70px;
+  padding-left: 30px;
+}
+.navbar-nav li
+{
+  padding: 0 30px;
+}
+.navbar-nav li a
+{
+  float: right;
+  text-align: left;
+}
+#nav-bar ul li a:hover
+{
+  color: #27358B!important;
+}
+.navbarNav
+{
+  background: #fff;
+}
+.navbar-toggler
+{
+  border: none!important;
+}
+.nav-link
+{
+  color: #FB0300!important;
+  font-size: 24px;
+}
+#splashpage
+{
+  padding-left: 0;
+  padding-top: 0;
+}
+.plane-img
+{
+  margin-left: -180px;
+  width: 140%;
+}
+.logo-img
+{
+  margin-right: -100px;
+  margin-left: 50px;
+  padding-left: 100;
+  padding-right: 0;
+  width: 100%;
+}
+.tagline
+{
+  color: white;
+  font-size: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-right: -100px;
+}
+.special-font
+{
+  font-family: myriad-pro, sans-serif!important;
+  color: #1B1464;
+  font-weight:bolder;
+}

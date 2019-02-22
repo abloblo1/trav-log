@@ -101,5 +101,7 @@ def journal():
     if 'email' not in session:
         return redirect(url_for('login'))
     return render_template("journal.html")
+
+## fix the home page
 if __name__ == "__main__":
   app.run(debug=True)

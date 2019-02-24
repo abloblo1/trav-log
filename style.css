@@ -7,7 +7,7 @@ html *
 {
   font-family: Times !important;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 26px;
   height: 100%;
 }
 body
@@ -104,11 +104,4 @@ body
 #third-section
 {
   padding-left: 700px;
-}
-#footer
-{
-  background: #FEE56F;
-  color: #fff;
-  padding: 2px;
-  padding-top: 12px;
 }

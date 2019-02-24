@@ -7,8 +7,6 @@ html *
 {
   font-family: Times !important;
   font-weight: bold;
-  font-size: 26px;
-  height: 100%;
 }
 body
 {
@@ -71,11 +69,13 @@ body
   padding-right: 0;
   width: 100%;
 }
-.words
+.tagline
 {
   color: white;
+  font-size: 20px;
   padding-left: 0;
   padding-right: 0;
+  margin-right: -100px;
 }
 .special-font
 {

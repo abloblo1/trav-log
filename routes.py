@@ -3,6 +3,7 @@ from forms import SignupForm, LoginForm
 from flask_pymongo import PyMongo
 from werkzeug import generate_password_hash, check_password_hash
 
+
 app = Flask(__name__)
 app.config['MONGO_DBNAME'] = 'trav_log'
 app.config['MONGO_URI'] = 'mongodb://user:travlog1234@ds145895.mlab.com:45895/trav_log'

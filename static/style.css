@@ -12,7 +12,10 @@ html *
 }
 body
 {
-  height: 100%;
+  /* background-size: 100% 100%
+  background-repeat: no-repeat;
+  bottom: 0;
+  background-position: left top; */
   background-image: url('img/backgroundLong.png');
   background-size: cover;
 }
@@ -65,16 +68,13 @@ body
 }
 .logo-img
 {
-  margin-right: -100px;
-  margin-left: 50px;
-  padding-left: 100;
+  padding-left: 150;
   padding-right: 0;
-  width: 100%;
+  width: 80%;
 }
-.tagline
+.words
 {
   color: white;
-  font-size: 20px;
   padding-left: 0;
   padding-right: 0;
 }

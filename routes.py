@@ -1,9 +1,18 @@
 import json
+import os
+import uuid
+import io
+from PIL import Image
+from bson import Binary
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-from forms import SignupForm, LoginForm, FlightsForm
+from forms import SignupForm, LoginForm, FlightsForm, JournalForm
 from flask_pymongo import PyMongo
 from werkzeug import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 from amadeus import Client, ResponseError, Location
+
+UPLOAD_FOLDER = '/user_images/'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 amadeus = Client(
     client_id='rE3dpAsJ6OAlUpa2Huh7t6QrJj2wvNSG',
@@ -11,6 +20,7 @@ amadeus = Client(
 )
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MONGO_DBNAME'] = 'trav_log'
 app.config['MONGO_URI'] = 'mongodb://user:travlog1234@ds145895.mlab.com:45895/trav_log'
 
@@ -96,14 +106,17 @@ def flights():
         origin = form.origin.data
         destination = form.destination.data
         departure_date = form.departure_date.data
+        output = ""
         flight_info = amadeus.shopping.flight_offers.get(origin=data[origin], destination=data[destination], departureDate=departure_date)
         for i in range(len(flight_info.data[0]['offerItems'][0]['services'][0]['segments'])):
             print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure'])
             print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival'])
             print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['carrierCode'])
             print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['number'])
-
-        return redirect(url_for('flights'))
+            output += 'Departure\nAirport: %s\nDate: %s\n' % (flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure']['iataCode'], flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure']['at'])
+            output += 'Arrival\nAirport: %s\nDate: %s\n\n' % (flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['iataCode'], flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['at'])
+            output += 'Carrier: %s' % (flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['carrierCode'])
+        return render_template('flights.html', form=form, output=output)
     elif request.method == 'GET':
         return render_template('flights.html', form=form)
     else:
@@ -125,7 +138,24 @@ def tourism():
 def journal():
     if 'email' not in session:
         return redirect(url_for('login'))
-    return render_template("journal.html")
+    if 'journal_image' in request.files:
+        journal_image = request.files['journal_image']
+        client = mongo.db.users
+        journal_image_name = secure_filename(journal_image.filename)
+        if allowed_file(journal_image_name):
+            journal_image_name = uuid.uuid4().hex
+            mongo.save_file(journal_image_name, journal_image)
+            client.update_one({'email':session['email']}, {"$set": {'image': journal_image_name}}, upsert=False)
+        flash('Incorrect file type')
+        return render_template('journal.html')
+    elif request.method == 'GET':
+        return render_template('journal.html')
+    else:
+        return render_template('journal.html')
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 ## fix the home page
 if __name__ == "__main__":

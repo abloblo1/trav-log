@@ -7,7 +7,10 @@
     <h2>journal</h2>
     <p>journal</p>
     <a class="nav-link" href="{{ url_for('home') }}"><b>go home</b></a>
-
+    <form action="" method=post enctype=multipart/form-data>
+      <input type='file' name='journal_image'>
+      <input type='submit'>
+    </form>
     </div>
   </main>
 {% endblock %}

@@ -74,9 +74,9 @@ def logout():
 @app.route("/home", methods=['GET','POST'])
 def home():
     if 'email' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('home'))
 
-    return render_template("home.html")
+    return render_template("index.html")
 
 @app.route("/flights", methods=['GET','POST'])
 def flights():

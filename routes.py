@@ -1,8 +1,14 @@
+import json
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-from forms import SignupForm, LoginForm
+from forms import SignupForm, LoginForm, FlightsForm
 from flask_pymongo import PyMongo
 from werkzeug import generate_password_hash, check_password_hash
+from amadeus import Client, ResponseError, Location
 
+amadeus = Client(
+    client_id='rE3dpAsJ6OAlUpa2Huh7t6QrJj2wvNSG',
+    client_secret='JGonMzgZuO4J1yJU'
+)
 
 app = Flask(__name__)
 app.config['MONGO_DBNAME'] = 'trav_log'
@@ -52,7 +58,6 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         client = mongo.db.users
-
         email = form.email.data
         password = form.password.data
         user = client.find_one({'email': email})
@@ -82,7 +87,27 @@ def home():
 def flights():
     if 'email' not in session:
         return redirect(url_for('login'))
-    return render_template("flights.html")
+
+    with open('new_city_codes.json') as city_codes:
+        data = json.load(city_codes)
+
+    form = FlightsForm()
+    if form.validate_on_submit():
+        origin = form.origin.data
+        destination = form.destination.data
+        departure_date = form.departure_date.data
+        flight_info = amadeus.shopping.flight_offers.get(origin=data[origin], destination=data[destination], departureDate=departure_date)
+        for i in range(len(flight_info.data[0]['offerItems'][0]['services'][0]['segments'])):
+            print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure'])
+            print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival'])
+            print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['carrierCode'])
+            print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['number'])
+
+        return redirect(url_for('flights'))
+    elif request.method == 'GET':
+        return render_template('flights.html', form=form)
+    else:
+        return render_template('flights.html', form=form)
 
 @app.route("/hotels", methods=['GET','POST'])
 def hotels():

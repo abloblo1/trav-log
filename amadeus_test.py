@@ -1,8 +1,8 @@
 from amadeus import Client, ResponseError, Location
 
 amadeus = Client(
-    client_id='rE3dpAsJ6OAlUpa2Huh7t6QrJj2wvNSG',
-    client_secret='JGonMzgZuO4J1yJU'
+    client_id='c5OfvTrJnQAcRF40ATR2G0oPvdXkEkxv',
+    client_secret='oVyXFiuu6BIkViyv'
 )
 def attempt():
     try:
@@ -97,28 +97,6 @@ def attempt():
         # # Confirm the availability of a specific offer
         # response15 = amadeus.shopping.hotel_offer('D5BEE9D0D08B6678C2F5FAD910DC110BCDA187D21D4FCE68ED423426D0A246BB').get()
 
-
-
-        # print("reponse: ")
-        # print(response.data)
-        # print("response1: ")
-        # print(response1.body)
-        # print(response1.result)
-        # print(response.data)
-        # print(response2.data)
-        # print(response3.data)
-        # print(response4.data)
-        # print(response5.data)
-        # print(response6.data)
-        # print(response7.data)
-        # print(response8.data)
-        # print(response9.data)
-        # print(response10.data)
-        # print(response11.data)
-        # print(response12.data)
-        # print(response13.data)
-        print(response14.data)
-        # print(response15.data)
     except ResponseError as error:
         print(error)
 
@@ -128,7 +106,7 @@ def create_new():
     ## Select a City
     if (usr_city == "Y"):
         usr_city_specific = input("What is the city code: ").upper()
-        response6 = amadeus.reference_data.location('ALHR').get()
+        response6 = amadeus.shopping.flight_offers.get(origin='MAD', destination='LON', departureDate='2019-08-01')
 
     else:
         # Here is a list of cities
@@ -156,7 +134,7 @@ def create_new():
         hotel_list = amadeus.shopping.hotel_offers.get(
             cityCode = usr_city_specific
         )
-        print(hotel_list)
+        print(hotel_list.data[0]["hotel"]["name"])
 
 def load_default():
     print("City: London\nAirport: \nHotel:HOTEL CAFE ROYAL")

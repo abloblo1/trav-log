@@ -13,3 +13,9 @@ class LoginForm(Form):
     email = StringField('Email', [DataRequired('Please enter your email address.'), Email('Please enter a valid email')])
     password = PasswordField('Password', [DataRequired('Please enter a password.')])
     submit = SubmitField('Sign in')
+
+class FlightsForm(Form):
+    origin = StringField('Home city', [DataRequired('Please enter your home city')])
+    destination = StringField('Destination city')
+    departure_date = StringField('Date')
+    submit = SubmitField('Search for flights')

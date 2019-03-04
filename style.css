@@ -144,3 +144,12 @@ textarea {
   height: 100%;
   font-family: myriad-pro, sans-serif !important;
 }
+
+#carousel {
+  width: 100%;
+  padding-right: 100px;
+  padding-left: 100px;
+}
+#slider {
+  width: 100%;
+}

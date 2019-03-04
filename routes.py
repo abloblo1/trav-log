@@ -25,6 +25,7 @@ app.config['MONGO_URI'] = 'mongodb://user:travlog1234@ds145895.mlab.com:45895/tr
 mongo = PyMongo(app)
 
 app.secret_key = "development-key"
+loggedIn = False
 
 @app.route("/")
 def index():
@@ -52,7 +53,6 @@ def signup():
                                 'journals':[],
                                 'flights':[],
                                 })
-
             session['email'] = request.form['email']
             return redirect(url_for('home'))
 
@@ -72,6 +72,7 @@ def login():
         user = client.find_one({'email': email})
         if user is not None and check_password_hash(user['password'], password):
             session['email'] = request.form['email']
+            loggedIn = True
             return redirect(url_for('home'))
         else:
             return redirect(url_for('login'))
@@ -89,7 +90,6 @@ def logout():
 def home():
     if 'email' not in session:
         return redirect(url_for('home'))
-
     return render_template("index.html", loggedIn=True)
 
 @app.route("/flights", methods=['GET','POST'])
@@ -118,11 +118,11 @@ def flights():
             output += 'Arrival\nAirport: {0}\nDate: {1}\n'.format(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['iataCode'], flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['at'])
             output += 'Carrier: {0}'.format(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['carrierCode'])
             print(output)
-        return render_template('flights.html')
+        return render_template('flights.html', loggedIn=True)
     elif request.method == 'GET':
-        return render_template('flights.html')
+        return render_template('flights.html', loggedIn=True)
     else:
-        return render_template('flights.html')
+        return render_template('flights.html', loggedIn=True)
 
 @app.route("/hotels", methods=['GET','POST'])
 def hotels():
@@ -144,12 +144,11 @@ def hotels():
             output += '\Available: {0}\n'.format(hotel_info.data[i]['available'])
             output += 'Offers: \nID: {0}\nDescription: {1}\nPrice: {2}{3}\n'.format(hotel_info.data[i]['offers'][0]['id'], hotel_info.data[i]['offers'][0]['room']['description']['text'], hotel_info.data[i]['offers'][0]['price']['total'], hotel_info.data[i]['offers'][0]['price']['currency'])
         print(output)
-        return render_template('hotels.html')
+        return render_template('hotels.html', loggedIn=True)
     elif request.method == 'GET':
-        return render_template('hotels.html')
+        return render_template('hotels.html', loggedIn=True)
     else:
-        return render_template('hotels.html')
-    return render_template("hotels.html")
+        return render_template('hotels.html', loggedIn=True)
 
 @app.route("/tourism", methods=['GET','POST'])
 def tourism():

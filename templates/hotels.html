@@ -1,16 +1,100 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Trav-Log/Hotel </title>
+  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href ="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</head>
 
-{% block content %}
-  <main class="about-section">
-    <div class="container">
+<body class="hotelclass">
+  <section id="nav-bar">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FEE56F">
+      <a class="navbar-brand" href="index.html"><img src="static/img/logo.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('flights')}}"><b>flights</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('hotels')}}"><b>hotel</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('tourism')}}"><b>tourism</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('journal')}}"><b>journal</b></a>
+          </li>
+          {% if loggedIn %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}"><b>log out</b></a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}"><b>log in</b></a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+  </section>
 
-    <h2>hotels</h2>
-    <p>hotels</p>
-    <a class="nav-link" href="{{ url_for('home') }}"><b>go home</b></a>
-    <form method = "POST">
-      <input type = "text" name ="cities" value = {{request.form.cities}}>
-      <button type="submit" class="btn btn-light" name="submit-button">Let's Go!</button>
-    </form>
-    </div>
-  </main>
-{% endblock %}
+  <section id = "hotel-section">
+    <div class="container-fluid">
+
+
+      <center>
+        <h1 style="color: #5e9ca0;">Find the <span style="color: #2b2301;"><i>BEST HOTEL</i></span>
+          for <span style="color: #2b2301;"><i>YOU</i></span> to stay
+        </h1>
+        <!-- <p>
+          You can look up the hotel to stay.
+        </p> -->
+        <br>
+      </br>
+        </center>
+<form method="POST">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="cities">City</span>
+            </div>
+            <input type="text" class="form-control" name="cities" placeholder="Paris" aria-label="cities" aria-describedby="basic1" required value={{request.form.cities}}>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="offercode">Offer Code:</span>
+            </div>
+            <input type="text" class="form-control" name = "offercode" placeholder="PARIS24" aria-label="offercode" aria-describedby="basic2" required value={{request.form.offercode}}>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="hotelID">Hotel ID:</span>
+            </div>
+            <input type="text" class="form-control" name = "hotelID" placeholder="Eiffel24" aria-label="hotelID" aria-describedby="basic3" required value={{request.form.hotelID}}>
+          </div>
+
+
+      </div>
+
+
+  </section>
+</div>
+
+  </section>
+  <section>
+    <center>
+    <button class="btn btn-info" onclick ="alert('Here is the hotel you want')" >Find Hotel
+    </button>
+  </center>
+
+  </section>
+</form>
+</body>
+</html>

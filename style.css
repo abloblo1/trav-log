@@ -117,3 +117,10 @@ html * {
 .container {
   margin-top: 100px;
 }
+.input-group {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.input-group-text, .form-control {
+  font-family: myriad-pro, sans-serif !important;
+}

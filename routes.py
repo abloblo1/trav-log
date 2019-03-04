@@ -184,6 +184,18 @@ def journal():
     else:
         return render_template('journal.html')
 
+@app.route("/file/<filename>")
+def file(filename):
+	return mongo.send_file(filename)
+
+@app.route("/image", methods=['GET', 'POST'])
+def image():
+	user = mongo.db.users.find_one({'email': session['email']})
+	for i in range(len(user['journals'])):
+		if user['journals'][i]['date'] == '2019-05-01':
+			journal = user['journals'][i]
+	return render_template('image.html', filename=url_for('file', filename=journal['image']))
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

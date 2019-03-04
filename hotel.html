@@ -10,36 +10,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 </head>
-<style>
-.container {
-  position: relative;
-}
-
-.topright {
-  position: absolute;
-  top: 8px;
-  right: 16px;
-  font-size: 18px;
-
-  img {
-    width: 100%;
-    height: auto;
-    opacity: 0.3;
-  }
-
-  table, th, td {
-  border: 1px solid black;
-  }
-
-  table {
-    width: 100%;
-    height: auto;
-  }
-
-}
-
-
-</style>
 
 <body class="hotelclass">
   <section id="nav-bar">
@@ -72,6 +42,8 @@
 
   <section id = "hotel-section">
     <div class="container-fluid">
+
+
       <center>
         <h1 style="color: #5e9ca0;">Find the <span style="color: #2b2301;"><i>BEST HOTEL</i></span>
           for <span style="color: #2b2301;"><i>YOU</i></span> to stay
@@ -82,24 +54,24 @@
         <br>
       </br>
         </center>
-
+<form method="POST">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="cities">City</span>
             </div>
-            <input type="text" class="form-control" placeholder="Paris" aria-label="cities" aria-describedby="basic1">
+            <input type="text" class="form-control" name="cities" placeholder="Paris" aria-label="cities" aria-describedby="basic1" value={{request.form.cities}}>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="offercode">Offer Code:</span>
             </div>
-            <input type="text" class="form-control" placeholder="PARIS24" aria-label="offercode" aria-describedby="basic2">
+            <input type="text" class="form-control" name = "offercode" placeholder="PARIS24" aria-label="offercode" aria-describedby="basic2" value={{request.form.offercode}}>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="hotelID">Hotel ID:</span>
             </div>
-            <input type="text" class="form-control" placeholder="Eiffel24" aria-label="hotelID" aria-describedby="basic3">
+            <input type="text" class="form-control" name = "hotelID" placeholder="Eiffel24" aria-label="hotelID" aria-describedby="basic3" value={{request.form.hotelID}}>
           </div>
 
 
@@ -150,6 +122,6 @@
         </td>
     </tr>
 </table> -->
-
+</form>
 </body>
 </html>

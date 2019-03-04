@@ -24,7 +24,7 @@ html * {
   background-size: cover;
 }
 .register-bg {
-  background-image: url("img/loginBg.png");
+  background-image: url("img/backgroundLogin.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;

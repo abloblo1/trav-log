@@ -4,8 +4,7 @@
 }
 html * {
   font-family: Times !important;
-  font-weight: bold;
-  font-size: 26px;
+  font-size: 18px;
   height: 100%;
 }
 /* ::-webkit-scrollbar {
@@ -13,7 +12,7 @@ html * {
 } */
 .home-bg {
   background-image: url("img/backgroundLong.png");
-  background-size: 100% 100%;
+  /* background-size: 100% 100%; */
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -28,6 +27,7 @@ html * {
   position: sticky;
   top: 0;
   z-index: 10;
+  font-size: 26px !important;
 }
 .navbar-brand img {
   height: 65px;
@@ -51,7 +51,7 @@ html * {
 }
 .nav-link {
   color: #FB0300!important;
-  font-size: 24px;
+  font-size: 26px!important;
 }
 
 #first-section {
@@ -70,13 +70,16 @@ html * {
 }
 .words {
   color: white;
+  font-weight:bold;
   padding-left: 0;
   padding-right: 0;
+  font-size: 26px;
 }
 .special-font {
   font-family: myriad-pro, sans-serif !important;
   color: #1B1464;
   font-weight: bolder;
+  font-size: 26px!important;
 }
 
 #second-section {
@@ -109,7 +112,6 @@ html * {
 }
 
 #third-section {
-  padding-left: 700px;
 }
 
 #flights-section {
@@ -152,4 +154,8 @@ textarea {
 }
 #slider {
   width: 100%;
+}
+#blog {
+  padding-top: 0px;
+  margin-top: 0px;
 }

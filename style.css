@@ -29,6 +29,12 @@ html * {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.log-bg {
+  background-image: url("img/logBackground.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 #nav-bar {
   position: sticky;
@@ -156,6 +162,14 @@ textarea {
   padding-top: 0px;
 }
 .form-group {
+  color: #000080;
   padding-left: 500px;
   padding-right: 500px;
+}
+#uploadimage{
+
+}
+.upload {
+
+  padding-right: 300px;
 }

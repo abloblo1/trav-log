@@ -11,8 +11,7 @@ from werkzeug import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from amadeus import Client, ResponseError, Location
 
-UPLOAD_FOLDER = '/user_images/'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 amadeus = Client(
     client_id='rE3dpAsJ6OAlUpa2Huh7t6QrJj2wvNSG',
@@ -20,7 +19,6 @@ amadeus = Client(
 )
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MONGO_DBNAME'] = 'trav_log'
 app.config['MONGO_URI'] = 'mongodb://user:travlog1234@ds145895.mlab.com:45895/trav_log'
 
@@ -51,7 +49,10 @@ def signup():
             user = client.insert({'firstname': form.first_name.data,
                                 'lastname': form.last_name.data,
                                 'email': form.email.data,
-                                'password': generate_password_hash(form.password.data)})
+                                'password': generate_password_hash(form.password.data),
+                                'journals':[],
+                                'flights':[],
+                                })
 
             session['email'] = form.email.data
             return redirect(url_for('home'))
@@ -103,9 +104,11 @@ def flights():
 
     form = FlightsForm()
     if form.validate_on_submit():
+        # get data from form
         origin = form.origin.data
         destination = form.destination.data
         departure_date = form.departure_date.data
+
         output = ""
         flight_info = amadeus.shopping.flight_offers.get(origin=data[origin], destination=data[destination], departureDate=departure_date)
         for i in range(len(flight_info.data[0]['offerItems'][0]['services'][0]['segments'])):
@@ -139,14 +142,23 @@ def journal():
     if 'email' not in session:
         return redirect(url_for('login'))
     if 'journal_image' in request.files:
+        #get data from journal forms
         journal_image = request.files['journal_image']
+
+        
         client = mongo.db.users
         journal_image_name = secure_filename(journal_image.filename)
         if allowed_file(journal_image_name):
             journal_image_name = uuid.uuid4().hex
             mongo.save_file(journal_image_name, journal_image)
-            client.update_one({'email':session['email']}, {"$set": {'image': journal_image_name}}, upsert=False)
-        flash('Incorrect file type')
+            journal_entry = {
+                'date': '2019-05-01',
+                'entry': 'test journal entry',
+                'image': journal_image_name
+            }
+            client.update({'email':session['email']}, {'$addToSet': {'journals': journal_entry}})
+        else:
+            flash('Incorrect file type')
         return render_template('journal.html')
     elif request.method == 'GET':
         return render_template('journal.html')

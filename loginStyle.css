@@ -100,7 +100,7 @@ body
 .world-img {
   position: fixed;
   left: 50%;
-  bottom: -200px;
+  bottom: -170px;
   transform: translate(-50%, -50%);
   margin: 0 auto;
 }
@@ -109,4 +109,24 @@ body
 }
 .signup-message {
   padding-top: 20px;
+}
+#registerPage
+.register-message {
+  padding-top: 10px;
+}
+.firstname{
+  padding-top: 20px;
+}
+.lastname{
+  padding-top: 10px;
+}
+.email{
+  padding-top: 10px;
+}
+.form-group {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.register {
+  padding-top: 10px;
 }

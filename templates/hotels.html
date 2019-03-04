@@ -7,7 +7,10 @@
     <h2>hotels</h2>
     <p>hotels</p>
     <a class="nav-link" href="{{ url_for('home') }}"><b>go home</b></a>
-
+    <form method = "POST">
+      <input type = "text" name ="cities" value = {{request.form.cities}}>
+      <button type="submit" class="btn btn-light" name="submit-button">Let's Go!</button>
+    </form>
     </div>
   </main>
 {% endblock %}

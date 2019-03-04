@@ -8,23 +8,12 @@ html * {
   font-size: 26px;
   height: 100%;
 }
-<<<<<<< HEAD:static/style.css
-body
-{
-  /* background-size: 100% 100%
-  background-repeat: no-repeat;
-  bottom: 0;
-  background-position: left top; */
-  background-image: url('img/backgroundLong.png');
-  background-size: cover;
-=======
 .home-bg {
   background-image: url("img/backgroundLong.png") !important;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
   /* bottom: 0; */
->>>>>>> sarah:style.css
 }
 .other-bg {
   background-image: url("img/BackgroundFull.png");
@@ -39,14 +28,8 @@ body
   top: 0;
   z-index: 10;
 }
-<<<<<<< HEAD:static/style.css
-.navbar-brand img
-{
-  height: 70px;
-=======
 .navbar-brand img {
   height: 65px;
->>>>>>> sarah:style.css
   padding-left: 30px;
 }
 .navbar-nav li {
@@ -59,14 +42,8 @@ body
 #nav-bar ul li a:hover {
   color: #27358B!important;
 }
-<<<<<<< HEAD:static/style.css
-.navbarNav
-{
-  background: #fff;
-=======
 .navbarNav {
   background: #FEE56F;
->>>>>>> sarah:style.css
 }
 .navbar-toggler {
   border: none!important;
@@ -75,32 +52,16 @@ body
   color: #FB0300!important;
   font-size: 24px;
 }
-<<<<<<< HEAD:static/style.css
-#splashpage
-{
-=======
 
 #first-section {
->>>>>>> sarah:style.css
   padding-left: 0;
   padding-top: 0;
 }
-<<<<<<< HEAD:static/style.css
-.plane-img
-{
-  margin-left: -180px;
-  width: 140%;
-}
-.logo-img
-{
-  padding-left: 150;
-=======
 .plane-img {
   width: 110%;
 }
 .logo-img {
   padding-left: 150px;
->>>>>>> sarah:style.css
   padding-right: 0;
   width: 80%;
 }
@@ -109,14 +70,8 @@ body
   padding-left: 0;
   padding-right: 0;
 }
-<<<<<<< HEAD:static/style.css
-.special-font
-{
-  font-family: myriad-pro, sans-serif!important;
-=======
 .special-font {
   font-family: myriad-pro, sans-serif !important;
->>>>>>> sarah:style.css
   color: #1B1464;
   font-weight: bolder;
 }

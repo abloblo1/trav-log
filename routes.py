@@ -38,23 +38,22 @@ def about():
 def signup():
     if 'email' in session:
         return redirect(url_for('home'))
-    form = SignupForm()
-    if form.validate_on_submit():
+    if request.method == 'POST':
         client = mongo.db.users
-        if client.find_one({'email': form.email.data}) is not None:
+        if client.find_one({'email': request.form['email']}) is not None:
             flash('An account with that user already exists')
             return redirect(url_for('signup'))
             # return redirect(url_for('login'))
         else:
-            user = client.insert({'firstname': form.first_name.data,
-                                'lastname': form.last_name.data,
-                                'email': form.email.data,
-                                'password': generate_password_hash(form.password.data),
+            user = client.insert({'firstname': request.form['firstname'],
+                                'lastname': request.form['lastname'],
+                                'email': request.form['email'],
+                                'password': generate_password_hash(request.form['password']),
                                 'journals':[],
                                 'flights':[],
                                 })
 
-            session['email'] = form.email.data
+            session['email'] = request.form['email']
             return redirect(url_for('home'))
 
     elif request.method == 'GET':
@@ -66,14 +65,13 @@ def signup():
 def login():
     if 'email' in session:
         return redirect(url_for('home'))
-    form = LoginForm()
-    if form.validate_on_submit():
+    if request.method == 'POST':
         client = mongo.db.users
-        email = form.email.data
-        password = form.password.data
+        email = request.form['email']
+        password = request.form['password']
         user = client.find_one({'email': email})
         if user is not None and check_password_hash(user['password'], password):
-            session['email'] = form.email.data
+            session['email'] = request.form['email']
             return redirect(url_for('home'))
         else:
             return redirect(url_for('login'))
@@ -102,33 +100,55 @@ def flights():
     with open('new_city_codes.json') as city_codes:
         data = json.load(city_codes)
 
-    form = FlightsForm()
-    if form.validate_on_submit():
+    # form = FlightsForm()
+    # if form.validate_on_submit():
         # get data from form
-        origin = form.origin.data
-        destination = form.destination.data
-        departure_date = form.departure_date.data
-
+    if request.method == 'POST':
         output = ""
+        origin = 'Madrid'
+        destination = request.form['destination']
+        departure_date = request.form['departure']
         flight_info = amadeus.shopping.flight_offers.get(origin=data[origin], destination=data[destination], departureDate=departure_date)
         for i in range(len(flight_info.data[0]['offerItems'][0]['services'][0]['segments'])):
             print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure'])
             print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival'])
             print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['carrierCode'])
             print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['number'])
-            output += 'Departure\nAirport: %s\nDate: %s\n' % (flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure']['iataCode'], flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure']['at'])
-            output += 'Arrival\nAirport: %s\nDate: %s\n\n' % (flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['iataCode'], flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['at'])
-            output += 'Carrier: %s' % (flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['carrierCode'])
-        return render_template('flights.html', form=form, output=output)
+            output += 'Departure\nAirport: {0}\nDate: {1}\n'.format(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure']['iataCode'], flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure']['at'])
+            output += 'Arrival\nAirport: {0}\nDate: {1}\n'.format(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['iataCode'], flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['at'])
+            output += 'Carrier: {0}'.format(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['carrierCode'])
+            print(output)
+        return render_template('flights.html')
     elif request.method == 'GET':
-        return render_template('flights.html', form=form)
+        return render_template('flights.html')
     else:
-        return render_template('flights.html', form=form)
+        return render_template('flights.html')
 
 @app.route("/hotels", methods=['GET','POST'])
 def hotels():
     if 'email' not in session:
         return redirect(url_for('login'))
+    with open('new_city_codes.json') as city_codes:
+        data = json.load(city_codes)
+    if request.method == 'POST':
+        city = request.form['cities']
+        hotel_info = amadeus.shopping.hotel_offers.get(cityCode = data[city])
+        output = ""
+        for i in range(len(hotel_info.data)):
+            output += 'Hotel: {0}\n'.format(hotel_info.data[i]['hotel']['name'])
+            output += 'Address: {0} {1} {2}\n'.format(hotel_info.data[i]['hotel']['address']['lines'][0], hotel_info.data[i]['hotel']['address']['postalCode'], hotel_info.data[i]['hotel']['address']['cityName'], hotel_info.data[i]['hotel']['address']['countryCode'])
+            output += 'Contact: {0}\n'.format(hotel_info.data[i]['hotel']['contact']['phone'])
+            output += 'Amenities: '
+            for j in range(len(hotel_info.data[i]['hotel']['amenities'])):
+                output += '{0} '.format(hotel_info.data[i]['hotel']['amenities'][j])
+            output += '\Available: {0}\n'.format(hotel_info.data[i]['available'])
+            output += 'Offers: \nID: {0}\nDescription: {1}\nPrice: {2}{3}\n'.format(hotel_info.data[i]['offers'][0]['id'], hotel_info.data[i]['offers'][0]['room']['description']['text'], hotel_info.data[i]['offers'][0]['price']['total'], hotel_info.data[i]['offers'][0]['price']['currency'])
+        print(output)
+        return render_template('hotels.html')
+    elif request.method == 'GET':
+        return render_template('hotels.html')
+    else:
+        return render_template('hotels.html')
     return render_template("hotels.html")
 
 @app.route("/tourism", methods=['GET','POST'])
@@ -145,7 +165,7 @@ def journal():
         #get data from journal forms
         journal_image = request.files['journal_image']
 
-        
+
         client = mongo.db.users
         journal_image_name = secure_filename(journal_image.filename)
         if allowed_file(journal_image_name):

@@ -101,40 +101,7 @@ def attempt():
         print(error)
 
 def create_new():
-    usr_city = input("Do you have a specific city (Y/N): ").upper()
-
-    ## Select a City
-    if (usr_city == "Y"):
-        usr_city_specific = input("What is the city code: ").upper()
-        response6 = amadeus.shopping.flight_offers.get(origin='MAD', destination='LON', departureDate='2019-08-01')
-
-    else:
-        # Here is a list of cities
-        print("I cant help you then wtf\n")
-        return 0
-
-    ## Select a Airport
-    usr_airport = input("Do you have a specific airport (Y/N): ").upper()
-    if (usr_airport == "Y"):
-        usr_airport_specific = input("What is the airport code: ").upper()
-        airport_list
-
-    ## Select a Hotel
-    usr_hotel = input("Do you have a specific hotel (Y/N): ").upper()
-    if (usr_hotel == "Y"):
-        usr_hotel_specific = input("What is the hotel code: ").upper()
-        hotel_info = amadeus.shopping.hotel_offers_by_hotel.get(
-            hotelId = usr_hotel_specific
-        )
-        print("Here is the info on your hotel: \n")
-        print(hotel_info)
-
-    else:
-        print("Here is a list of hotels for your target city: \n")
-        hotel_list = amadeus.shopping.hotel_offers.get(
-            cityCode = usr_city_specific
-        )
-        print(hotel_list.data[0]["hotel"]["name"])
+    print(amadeus.shopping.hotel_offers.get(cityCode = 'MAD').data)
 
 def load_default():
     print("City: London\nAirport: \nHotel:HOTEL CAFE ROYAL")

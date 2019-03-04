@@ -28,7 +28,7 @@ app.secret_key = "development-key"
 
 @app.route("/")
 def index():
-  return render_template("index.html")
+  return render_template("index.html", loggedIn=False)
 
 @app.route("/about")
 def about():
@@ -42,7 +42,7 @@ def signup():
         client = mongo.db.users
         if client.find_one({'email': request.form['email']}) is not None:
             flash('An account with that user already exists')
-            return redirect(url_for('signup'))
+            return redirect(url_for('login'))
             # return redirect(url_for('login'))
         else:
             user = client.insert({'firstname': request.form['firstname'],
@@ -57,9 +57,9 @@ def signup():
             return redirect(url_for('home'))
 
     elif request.method == 'GET':
-        return render_template('signup.html', form=form)
+        return render_template('signup.html')
     else:
-        return render_template('signup.html', form=form)
+        return render_template('signup.html')
 
 @app.route("/login", methods=['GET','POST'])
 def login():
@@ -76,21 +76,21 @@ def login():
         else:
             return redirect(url_for('login'))
     elif request.method == 'GET':
-        return render_template('login.html', form=form)
+        return render_template('login.html')
     else:
-        return render_template('login.html', form=form)
+        return render_template('login.html')
 
 @app.route("/logout")
 def logout():
     session.pop('email', None)
-    return redirect(url_for('index'))
+    return render_template("index.html", loggedIn=False)
 
 @app.route("/home", methods=['GET','POST'])
 def home():
     if 'email' not in session:
         return redirect(url_for('home'))
 
-    return render_template("index.html")
+    return render_template("index.html", loggedIn=True)
 
 @app.route("/flights", methods=['GET','POST'])
 def flights():

@@ -5,22 +5,29 @@
 html * {
   font-family: Times !important;
   font-weight: bold;
-  font-size: 26px;
+  font-size: 20px;
   height: 100%;
 }
+/* ::-webkit-scrollbar {
+    display: none;
+} */
 .home-bg {
-  background-image: url("img/backgroundLong.png") !important;
+  background-image: url("img/backgroundLong.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  /* bottom: 0; */
 }
 .other-bg {
-  background-image: url("img/BackgroundFull.png");
+  background-image: url("img/lineless-background.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  /* bottom: 0; */
+}
+.register-bg {
+  background-image: url("img/loginBg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #nav-bar {
@@ -56,6 +63,8 @@ html * {
 #first-section {
   padding-left: 0;
   padding-top: 0;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 .plane-img {
   width: 110%;
@@ -110,7 +119,9 @@ html * {
 }
 
 #flights-section {
-
+}
+.coyote-font {
+  font-family: Coyote !important;
 }
 .container {
   margin-top: 100px;
@@ -121,4 +132,30 @@ html * {
 }
 .input-group-text, .form-control {
   font-family: myriad-pro, sans-serif !important;
+}
+.cityArt-img {
+  width: 110%;
+}
+
+#output {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+textarea {
+  background: transparent;
+  resize: none;
+  border: 0 none;
+  width: 100%;
+  outline: none;
+  height: 100%;
+  font-family: myriad-pro, sans-serif !important;
+}
+#signup {
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 0px;
+}
+.form-group {
+  padding-left: 500px;
+  padding-right: 500px;
 }

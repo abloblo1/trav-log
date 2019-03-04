@@ -1,57 +1,96 @@
-{% extends "layout.html" %}
-{% block content %}
-<main class="container signup-section">
-  <div class="section-content">
-    <h2>Create an account</h2>
-    <form method="POST" action="/signup">
-      {{form.hidden_tag()}}
-      <div class="form-group">
-        {{form.first_name.label}}
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Trav-Log </title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href ="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  </head>
 
-        {% if form.first_name.errors %}
-          {% for error in form.first_name.errors %}
-            <p class="error-message">{{error}}</p>
-          {% endfor %}
-        {% endif %}
-
-        {{form.first_name}}
-      </div>
-      <div class="form-group">
-        {{form.last_name.label}}
-
-        {% if form.last_name.errors %}
-          {% for error in form.last_name.errors %}
-            <p class="error-message">{{error}}</p>
-          {% endfor %}
-        {% endif %}
-
-        {{form.last_name}}
-      </div>
-      <div class="form-group">
-        {{form.email.label}}
-
-        {% if form.email.errors %}
-          {% for error in form.email.errors %}
-            <p class="error-message">{{error}}</p>
-          {% endfor %}
-        {% endif %}
-
-        {{form.email}}
-      </div>
-      <div class="form-group">
-        {{form.password.label}}
-
-        {% if form.password.errors %}
-          {% for error in form.password.errors %}
-            <p class="error-message">{{error}}</p>
-          {% endfor %}
-        {% endif %}
-
-        {{form.password}}
-      </div>
-      {{form.submit(class="btn-primary")}}
-    </form>
-
+  <body class = "register-bg">
+    <!---NavigationBar--->
+  <section id="nav-bar">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FEE56F">
+  <a class="navbar-brand" href="#"><img src="static/img/logo.png"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href=""><b>flights</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href=""><b>hotel</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href=""><b>tourism</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href=""><b>journal</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href=""><b>log in</b></a>
+      </li>
+    </ul>
   </div>
-</main>
-{% endblock %}
+  </section>
+  <br/>
+  <br/>
+  <br/>
+  <section id = "signup">
+    <div class = "signup">
+      <center>
+      <img src="static/img/signup.png" alt = "signup" style="height: 80px">
+      <br/>
+      <font color="white" size="5" style="font-family:myriad;">fill out the fields below then click create when done to set up account</font>
+  </div>
+  </section>
+
+  <section id = "register form">
+      <form method = "POST">
+        <div class="form-group">
+          <label for="firstname">First Name</label>
+          <input type="firstname" class="form-control" name="firstname" aria-describedby="firstname" placeholder="Enter First Name" value = {{request.form.firstname}}>
+        </div>
+        <div class="form-group">
+          <label for="lastname">Last Name</label>
+          <input type="lastname" class="form-control" name="lastname" aria-describedby="lastname" placeholder="Enter Last Name" value = {{request.form.lastname}}>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email" value = {{request.form.email}}>
+        </div>
+        <div class="form-group">
+         <label for="exampleInputPassword1">Password</label>
+         <input type="password" class="form-control" name="password" placeholder="Password" value = {{request.form.password}}>
+       </div>
+        <center>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </center>
+      </form>
+      </section>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+  </body>
+</html>

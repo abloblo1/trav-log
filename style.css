@@ -9,18 +9,16 @@ html * {
   height: 100%;
 }
 .home-bg {
-  background-image: url("img/backgroundLong.png") !important;
+  background-image: url("img/backgroundLong.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  /* bottom: 0; */
 }
 .other-bg {
   background-image: url("img/BackgroundFull.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  /* bottom: 0; */
 }
 
 #nav-bar {
@@ -112,7 +110,9 @@ html * {
 }
 
 #flights-section {
-
+}
+.coyote-font {
+  font-family: Coyote;
 }
 .container {
   margin-top: 100px;

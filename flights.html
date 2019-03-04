@@ -42,50 +42,46 @@
     <section id="flights-section">
     <div class="container-fluid" style="max-width: 1000px">
     <center>
-      <h1 class="special-font">Book a flight to the destination of your dreams</h1>
+      <h1 class="coyote-font">Book a flight to the destination of your dreams</h1>
       <br/>
-
-      <form method="POST">
-      <!--Destination input-->
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="Destination">Destination:</span>
-          </div>
-          <input type="text" class="form-control" name="destination" placeholder="San Fransisco, CA" aria-label="Destination">
+      <div class="row">
+        <div class="col-6">
+          <img class="img-reponsive plane-img" src="img/planeArt.png" />
         </div>
+        <div class="col-6">
+          <form method="POST">
+            <!--Starting Location -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="Home">Home:</span>
+              </div>
+              <input type="text" class="form-control" name="home" placeholder="Chicago, IL" aria-label="home" required value={{request.form.home}}>
+            </div>
 
-        <!--Departure and Arrival inputs-->
-        <div class="row">
-          <div class="col-6">
+            <!--Destination input-->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="Destination">Destination:</span>
+              </div>
+              <input type="text" class="form-control" name="destination" placeholder="San Fransisco, CA" aria-label="Destination" required value={{request.form.destination}}>
+            </div>
+
+            <!--Departure inputs-->
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="Departure">Departure:</span>
               </div>
-              <input type="date" class="form-control" name="departure" placeholder="mm/dd/yyyy" aria-label="Departure Date">
+              <input type="date" class="form-control" name="departure" aria-label="Departure Date" required value= {{request.form.departure}}>
             </div>
-          </div>
-          <div class="col-6">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="Arrival">Arrival:</span>
-              </div>
-              <input type="date" class="form-control" name="arrival" placeholder="mm/dd/yyyy" aria-label="Arrival Date">
+
+            <!--Submit button-->
+            <button type="button" class="btn btn-light" name="submit-button">Let's Go!</button>
+
             </div>
-          </div>
+          </form>
         </div>
+      </div>
 
-        <!--Number of passenger inputs-->
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="Passengers">Number of Passengers:</span>
-          </div>
-          <input type="text" class="form-control" name="num-passenger" placeholder="Enter Number of Passengers" aria-label="passengers">
-        </div>
-
-        <button type="submit" class="btn btn-light" name="submit-button">Let's Go!</button>
-
-        </div>
-      </form>
     </center>
     </div>
     </section>

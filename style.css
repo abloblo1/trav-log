@@ -8,6 +8,9 @@ html * {
   font-size: 26px;
   height: 100%;
 }
+/* ::-webkit-scrollbar {
+    display: none;
+} */
 .home-bg {
   background-image: url("img/backgroundLong.png");
   background-size: 100% 100%;
@@ -15,7 +18,7 @@ html * {
   background-size: cover;
 }
 .other-bg {
-  background-image: url("img/BackgroundFull.png");
+  background-image: url("img/lineless-background.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -112,7 +115,7 @@ html * {
 #flights-section {
 }
 .coyote-font {
-  font-family: Coyote;
+  font-family: Coyote !important;
 }
 .container {
   margin-top: 100px;
@@ -122,5 +125,22 @@ html * {
   padding-bottom: 15px;
 }
 .input-group-text, .form-control {
+  font-family: myriad-pro, sans-serif !important;
+}
+.cityArt-img {
+  width: 110%;
+}
+
+#output {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+textarea {
+  background: transparent;
+  resize: none;
+  border: 0 none;
+  width: 100%;
+  outline: none;
+  height: 100%;
   font-family: myriad-pro, sans-serif !important;
 }

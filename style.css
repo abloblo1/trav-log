@@ -1,107 +1,119 @@
-@font-face
-{
+@font-face {
   font-family: Coyote;
   src: url("coyote-font/Coyote-SemiBoldDEMO.otf") format("opentype");
 }
-html *
-{
+html * {
   font-family: Times !important;
   font-weight: bold;
   font-size: 26px;
   height: 100%;
 }
-body
-{
+.home-bg {
+  background-image: url("img/backgroundLong.png") !important;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-attachment: local;
-  bottom: 0;
-  background-position: left top;
+  background-size: cover;
+  /* bottom: 0; */
 }
-#nav-bar
-{
+.other-bg {
+  background-image: url("img/BackgroundFull.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* bottom: 0; */
+}
+
+#nav-bar {
   position: sticky;
   top: 0;
   z-index: 10;
 }
-.navbar-brand img
-{
+.navbar-brand img {
   height: 65px;
   padding-left: 30px;
 }
-.navbar-nav li
-{
+.navbar-nav li {
   padding: 0 30px;
 }
-.navbar-nav li a
-{
+.navbar-nav li a {
   float: right;
   text-align: left;
 }
-#nav-bar ul li a:hover
-{
+#nav-bar ul li a:hover {
   color: #27358B!important;
 }
-.navbarNav
-{
+.navbarNav {
   background: #FEE56F;
 }
-.navbar-toggler
-{
+.navbar-toggler {
   border: none!important;
 }
-.nav-link
-{
+.nav-link {
   color: #FB0300!important;
   font-size: 24px;
 }
-#first-section
-{
+
+#first-section {
   padding-left: 0;
   padding-top: 0;
   padding-bottom: 0px;
   margin-bottom: 0px;
 }
-.plane-img
-{
+.plane-img {
   width: 110%;
 }
-.logo-img
-{
+.logo-img {
   padding-left: 150px;
   padding-right: 0;
   width: 80%;
 }
-.words
-{
+.words {
   color: white;
   padding-left: 0;
   padding-right: 0;
 }
-.special-font
-{
+.special-font {
   font-family: myriad-pro, sans-serif !important;
   color: #1B1464;
   font-weight: bolder;
 }
-#second-section
-{
+
+#second-section {
   padding-left: 0;
   padding-top: 0;
 }
-.icon
-{
+.icon {
   width: 98%;
   height: 98%;
 }
-.row
-{
+.row {
   margin-right: 0px;
   margin-left: 0px;
   padding-top: 0;
   padding-bottom: 0;
 }
-#third-section
-{
+.tilt {
+  -webkit-transition: all 0.75s ease;
+     -moz-transition: all 0.75s ease;
+       -o-transition: all 0.75s ease;
+      -ms-transition: all 0.75s ease;
+          transition: all 0.75s ease;
+}
+.tilt:hover {
+  -webkit-transform: rotate(-10deg);
+     -moz-transform: rotate(-10deg);
+       -o-transform: rotate(-10deg);
+      -ms-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+}
+
+#third-section {
   padding-left: 700px;
+}
+
+#flights-section {
+
+}
+.container {
+  margin-top: 100px;
 }

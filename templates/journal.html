@@ -8,6 +8,8 @@
     <p>journal</p>
     <a class="nav-link" href="{{ url_for('home') }}"><b>go home</b></a>
     <form action="" method=post enctype=multipart/form-data>
+      <input type='text' name='date' value = {{request.form.date}}>
+        <input type='text' name='entry' value = {{request.form.entry}}>
       <input type='file' name='journal_image'>
       <input type='submit'>
     </form>

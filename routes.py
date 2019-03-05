@@ -160,25 +160,25 @@ def tourism():
 def journal():
     if 'email' not in session:
         return redirect(url_for('login'))
-    if 'journal_image' in request.files:
-        #get data from journal forms
-        journal_image = request.files['journal_image']
+    if request.method == "POST":
+        if 'journal_image' in request.files:
+            #get data from journal forms
+            journal_image = request.files['journal_image']
 
-
-        client = mongo.db.users
-        journal_image_name = secure_filename(journal_image.filename)
-        if allowed_file(journal_image_name):
-            journal_image_name = uuid.uuid4().hex
-            mongo.save_file(journal_image_name, journal_image)
-            journal_entry = {
-                'date': '2019-05-01',
-                'entry': 'test journal entry',
-                'image': journal_image_name
-            }
-            client.update({'email':session['email']}, {'$addToSet': {'journals': journal_entry}})
-        else:
-            flash('Incorrect file type')
-        return render_template('journal.html')
+            client = mongo.db.users
+            journal_image_name = secure_filename(journal_image.filename)
+            if allowed_file(journal_image_name):
+                journal_image_name = uuid.uuid4().hex
+                mongo.save_file(journal_image_name, journal_image)
+                journal_entry = {
+                    'date': request.form['date'],
+                    'entry': request.form['entry'],
+                    'image': journal_image_name
+                }
+                client.update_one({'email':session['email']}, {'$push': {'journals': journal_entry}})
+            else:
+                flash('Incorrect file type')
+            return render_template('journal.html')
     elif request.method == 'GET':
         return render_template('journal.html')
     else:
@@ -190,12 +190,18 @@ def file(filename):
 
 @app.route("/image", methods=['GET', 'POST'])
 def image():
-	user = mongo.db.users.find_one({'email': session['email']})
-	for i in range(len(user['journals'])):
-		if user['journals'][i]['date'] == '2019-05-01':
-			journal = user['journals'][i]
-	return render_template('image.html', filename=url_for('file', filename=journal['image']))
-
+    user = mongo.db.users.find_one({'email': session['email']})
+    journal = user['journals']
+    if request.method == "POST":
+        for i in range(len(journal)):
+            if journal[i]['date'] == request.form['date']:
+                journal = journal[i]
+                break
+        return render_template('image.html', entry=journal['entry'], filename=url_for('file', filename=journal['image']))
+    elif request.method == 'GET':
+        return render_template('image.html')
+    else:
+        return render_template('image.html')
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

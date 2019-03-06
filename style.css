@@ -12,7 +12,6 @@ html * {
 } */
 .home-bg {
   background-image: url("img/backgroundLong.png");
-  /* background-size: 100% 100%; */
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -27,7 +26,6 @@ html * {
   position: sticky;
   top: 0;
   z-index: 10;
-  font-size: 26px !important;
 }
 .navbar-brand img {
   height: 65px;
@@ -51,7 +49,10 @@ html * {
 }
 .nav-link {
   color: #FB0300!important;
-  font-size: 26px!important;
+  font-size: 26px !important;
+}
+.nav-item {
+  font-size: 26px !important;
 }
 
 #first-section {
@@ -152,11 +153,13 @@ textarea {
 
 #blog {
   margin-top: 0px;
+  font-size: 18px !important;
 }
 .my-4 {
   padding-right: 0px !important;
   padding-left: 0px !important;
   padding-bottom: 10px;
+  font-size: 18px !important;
 }
 .card {
   padding-left: 50px;

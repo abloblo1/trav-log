@@ -156,7 +156,7 @@ def tourism():
         return redirect(url_for('login'))
     return render_template("tourism.html")
 
-@app.route("/journal", methods=['GET','POST'])
+@app.route("/journal_entry", methods=['GET','POST'])
 def journal():
     if 'email' not in session:
         return redirect(url_for('login'))
@@ -188,7 +188,7 @@ def journal():
 def file(filename):
 	return mongo.send_file(filename)
 
-@app.route("/image", methods=['GET', 'POST'])
+@app.route("/journal", methods=['GET', 'POST'])
 def image():
     user = mongo.db.users.find_one({'email': session['email']})
     journal = user['journals']
@@ -197,11 +197,11 @@ def image():
             if journal[i]['date'] == request.form['date']:
                 journal = journal[i]
                 break
-        return render_template('image.html', entry=journal['entry'], filename=url_for('file', filename=journal['image']))
+        return render_template('journal.html', firstname=user['firstname'], entry=journal['entry'], filename=url_for('file', filename=journal['image']))
     elif request.method == 'GET':
-        return render_template('image.html')
+        return render_template('journal.html', firstname=user['firstname'])
     else:
-        return render_template('image.html')
+        return render_template('journal.html', firstname=user['firstname'])
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

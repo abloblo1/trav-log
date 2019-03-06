@@ -156,7 +156,7 @@ def tourism():
         return redirect(url_for('login'))
     return render_template("tourism.html")
 
-@app.route("/journal_entry", methods=['GET','POST'])
+@app.route("/entry", methods=['GET','POST'])
 def journal():
     if 'email' not in session:
         return redirect(url_for('login'))
@@ -178,11 +178,11 @@ def journal():
                 client.update_one({'email':session['email']}, {'$push': {'journals': journal_entry}})
             else:
                 flash('Incorrect file type')
-            return render_template('journal.html')
+            return render_template('journal_entry.html')
     elif request.method == 'GET':
-        return render_template('journal.html')
+        return render_template('journal_entry.html')
     else:
-        return render_template('journal.html')
+        return render_template('journal_entry.html')
 
 @app.route("/file/<filename>")
 def file(filename):

@@ -111,16 +111,10 @@ html * {
           transform: rotate(-10deg);
 }
 
-#third-section {
-}
-
 #flights-section {
 }
 .coyote-font {
   font-family: Coyote !important;
-}
-.container {
-  margin-top: 100px;
 }
 .input-group {
   padding-top: 15px;
@@ -155,7 +149,23 @@ textarea {
 #slider {
   width: 100%;
 }
+
 #blog {
-  padding-top: 0px;
   margin-top: 0px;
+}
+.my-4 {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  padding-bottom: 10px;
+}
+.card {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.col-lg-8 {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.col-md-4 {
+  margin-top: -25px;
 }

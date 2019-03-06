@@ -57,49 +57,41 @@
           <img class="img-reponsive cityArt-img" src="static/img/cityArt.png"/>
         </div>
         <div class = "col-6">
-        <form method="POST">
-        <!--Destination input-->
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="Destination">Destination:</span>
-            </div>
-            <input type="text" class="form-control" name="destination" placeholder="San Fransisco, CA" aria-label="Destination" value = {{request.form.destination}}>
-          </div>
-          <div class="col-6">
-            <form method="POST">
               <!--Starting Location -->
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="Home">Home:</span>
+
+              <form method="POST">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="Home">Home:</span>
+              </div>
+                  <input type="text" class="form-control" name="home" placeholder="Chicago, IL" aria-label="home" required value={{request.form.home}}>
                 </div>
-                <input type="text" class="form-control" name="home" placeholder="Chicago, IL" aria-label="home" required value={{request.form.home}}>
-              </div>
 
-              <!--Destination input-->
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="Destination">Destination:</span>
-                </div>
-                <input type="text" class="form-control" name="destination" placeholder="San Fransisco, CA" aria-label="Destination" required value={{request.form.destination}}>
-              </div>
+            <!--Destination input-->
 
-              <!--Departure inputs-->
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="Departure">Departure:</span>
-                </div>
-                <input type="date" class="form-control" name="departure" aria-label="Departure Date" required value= {{request.form.departure}}>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="Destination">Destination:</span>
               </div>
+                  <input type="text" class="form-control" name="destination" placeholder="San Fransisco, CA" aria-label="Destination" required value={{request.form.destination}}>
 
-              <!--Submit button-->
-              <button type="submit" class="btn btn-light" name="submit-button" style="font-family:myriad-pro, sans-serif !important">Let's Go!</button>
-
-              </div>
-            </form>
             </div>
-        </div>
-      </div>
 
+            <!--Departure inputs-->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="Departure">Departure:</span>
+              </div>
+                  <input type="date" class="form-control" name="departure" aria-label="Departure Date" required value= {{request.form.departure}}>
+            </div>
+
+            <!--Submit button-->
+
+              <button type="submit" class="btn btn-light" name="submit-button" style="font-family:myriad-pro, sans-serif !important">Let's Go!</button>
+            </form>
+
+            </div>
+          </div>
     </center>
     </div>
     </section>
@@ -111,8 +103,7 @@
         <center>
           <h1 class="coyote-font">Here's your info:</h1>
         <textarea rows="20" cols="100">
-          test test test tes hello
-          hello hello hello
+          {{result}}
         </textarea>
       </center>
       </div>
@@ -133,7 +124,7 @@
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="staticimg/spain.jpeg" class="d-block img-fluid" alt="Barcelona, Spain">
+              <img src="static/img/spain.jpeg" class="d-block img-fluid" alt="Barcelona, Spain">
             </div>
             <div class="carousel-item">
               <img src="static/img/thailand.jpeg" class="d-block img-fluid" alt="Na Mueang, Thailand">

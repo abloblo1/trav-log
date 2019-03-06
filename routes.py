@@ -2,8 +2,6 @@ import json
 import os
 import uuid
 import io
-from PIL import Image
-from bson import Binary
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from forms import SignupForm, LoginForm, FlightsForm, JournalForm
 from flask_pymongo import PyMongo
@@ -105,9 +103,10 @@ def flights():
         # get data from form
     if request.method == 'POST':
         output = ""
-        origin = 'Madrid'
+        origin = request.form['home']
         destination = request.form['destination']
         departure_date = request.form['departure']
+        print(departure_date)
         flight_info = amadeus.shopping.flight_offers.get(origin=data[origin], destination=data[destination], departureDate=departure_date)
         for i in range(len(flight_info.data[0]['offerItems'][0]['services'][0]['segments'])):
             print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure'])
@@ -118,7 +117,7 @@ def flights():
             output += 'Arrival\nAirport: {0}\nDate: {1}\n'.format(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['iataCode'], flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['at'])
             output += 'Carrier: {0}'.format(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['carrierCode'])
             print(output)
-        return render_template('flights.html', loggedIn=True)
+        return render_template('flights.html', loggedIn=True, result=output)
     elif request.method == 'GET':
         return render_template('flights.html', loggedIn=True)
     else:
@@ -157,7 +156,7 @@ def tourism():
     return render_template("tourism.html")
 
 @app.route("/entry", methods=['GET','POST'])
-def journal():
+def entry():
     if 'email' not in session:
         return redirect(url_for('login'))
     if request.method == "POST":
@@ -178,9 +177,9 @@ def journal():
                 client.update_one({'email':session['email']}, {'$push': {'journals': journal_entry}})
             else:
                 flash('Incorrect file type')
-            return render_template('journal_entry.html')
+            return render_template('entry.html')
     elif request.method == 'GET':
-        return render_template('journal_entry.html')
+        return render_template('entry.html')
     else:
         return render_template('journal_entry.html')
 
@@ -189,7 +188,7 @@ def file(filename):
 	return mongo.send_file(filename)
 
 @app.route("/journal", methods=['GET', 'POST'])
-def image():
+def journal():
     user = mongo.db.users.find_one({'email': session['email']})
     journal = user['journals']
     if request.method == "POST":

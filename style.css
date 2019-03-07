@@ -11,7 +11,7 @@ html * {
     display: none;
 } */
 .home-bg {
-  background-image: url("img/backgroundLong.png");
+  background-image: url("img/backgroundFull.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -65,9 +65,11 @@ html * {
   width: 110%;
 }
 .logo-img {
-  padding-left: 150px;
   padding-right: 0;
-  width: 80%;
+  width: 70% !important;
+}
+.get-started {
+  width: 70% !important;
 }
 .words {
   color: white;
@@ -110,6 +112,11 @@ html * {
        -o-transform: rotate(-10deg);
       -ms-transform: rotate(-10deg);
           transform: rotate(-10deg);
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
 }
 
 #flights-section {

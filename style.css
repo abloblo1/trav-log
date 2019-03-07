@@ -31,6 +31,9 @@ html * {
 }
 .log-bg {
   background-image: url("img/logBackground.png");
+  background-position: center center;
+  padding:0;
+  margin:auto;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -156,6 +159,37 @@ textarea {
   height: 100%;
   font-family: myriad-pro, sans-serif !important;
 }
+#carousel {
+  width: 100%;
+  padding-right: 100px;
+  padding-left: 100px;
+}
+#slider {
+  width: 100%;
+}
+
+#blog {
+  margin-top: 0px;
+  font-size: 18px !important;
+}
+.my-4 {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  padding-bottom: 10px;
+  font-size: 18px !important;
+}
+.card {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.col-lg-8 {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.col-md-4 {
+  margin-top: -25px;
+}
+
 #signup {
   padding-left: 100px;
   padding-right: 100px;
@@ -167,9 +201,14 @@ textarea {
   padding-right: 500px;
 }
 #uploadimage{
-
 }
 .upload {
 
   padding-right: 300px;
+}
+#blog {
+
+}
+.card-header {
+  background-color: #000080;
 }

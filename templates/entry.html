@@ -17,7 +17,7 @@
     <!---NavigationBar--->
   <section id="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FEE56F">
-  <a class="navbar-brand" href="index.html"><img src="static/img/logo.png"></a>
+  <a class="navbar-brand" href="{{url_for('home')}}"><img src="static/img/logo.png"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -33,11 +33,7 @@
         <a class="nav-link" href="{{url_for('tourism')}}"><b>tourism</b></a>
       </li>
       <li class="nav-item">
-<<<<<<< HEAD:templates/entry.html
         <a class="nav-link" href="{{url_for('journal')}}"><b>journal</b></a>
-=======
-        <a class="nav-link" href="old-entries.html"><b>journal</b></a>
->>>>>>> stacy:new-entries.html
       </li>
       {% if loggedIn %}
       <li class="nav-item">

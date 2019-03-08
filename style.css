@@ -206,8 +206,8 @@ textarea {
 }
 .form-group {
   color: #000080;
-  padding-left: 500px;
-  padding-right: 500px;
+  padding-left: 30%;
+  padding-right: 30%;
 }
 #uploadimage{
 }

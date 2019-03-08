@@ -198,11 +198,11 @@ def journal():
             if journal[i]['date'] == request.form['date']:
                 journal = journal[i]
                 break
-        return render_template('journal.html', firstname=user['firstname'], entry=journal['entry'], filename=url_for('file', filename=journal['image']))
+        return render_template('journal.html', firstname=user['firstname'], entry=journal['entry'], filename=url_for('file', filename=journal['image']), loggedIn=True)
     elif request.method == 'GET':
-        return render_template('journal.html', firstname=user['firstname'])
+        return render_template('journal.html', firstname=user['firstname'], loggedIn = True)
     else:
-        return render_template('journal.html', firstname=user['firstname'])
+        return render_template('journal.html', firstname=user['firstname'], loggedIn = True)
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

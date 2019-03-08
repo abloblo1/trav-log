@@ -189,6 +189,8 @@ def file(filename):
 
 @app.route("/journal", methods=['GET', 'POST'])
 def journal():
+    if 'email' not in session:
+        return redirect(url_for('login'))
     user = mongo.db.users.find_one({'email': session['email']})
     journal = user['journals']
     if request.method == "POST":

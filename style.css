@@ -212,3 +212,11 @@ textarea {
 .card-header {
   background-color: #000080;
 }
+#hotel-section {
+}
+.container-fluid {
+  padding-left: 300px
+}
+.hotel-img {
+  padding-left: -300px;
+}

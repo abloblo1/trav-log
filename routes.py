@@ -180,11 +180,11 @@ def entry():
                 client.update_one({'email':session['email']}, {'$push': {'journals': journal_entry}})
             else:
                 flash('Incorrect file type')
-            return render_template('entry.html')
+            return render_template('entry.html', loggedIn=True)
     elif request.method == 'GET':
-        return render_template('entry.html')
+        return render_template('entry.html', loggedIn=True)
     else:
-        return render_template('journal_entry.html')
+        return render_template('entry.html', loggedIn=True)
 
 @app.route("/file/<filename>")
 def file(filename):

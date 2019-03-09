@@ -11,7 +11,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 </head>
 
-<body class="hotelclass">
+<body class="register-bg">
   <section id="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FEE56F">
       <a class="navbar-brand" href="index.html"><img src="static/img/logo.png"></a>
@@ -46,21 +46,31 @@
     </nav>
   </section>
 
+<form method="POST">
   <section id = "hotel-section">
-    <div class="container-fluid">
+    <div class="container-fluid" style="max-width: 1000px">
 
 
       <center>
-        <h1 style="color: #5e9ca0;">Find the <span style="color: #2b2301;"><i>BEST HOTEL</i></span>
-          for <span style="color: #2b2301;"><i>YOU</i></span> to stay
-        </h1>
+      </br>
+        <h1 class="coyote-font">FIND THE BEST HOTEL FOR YOU TO STAY</h1>
         <!-- <p>
           You can look up the hotel to stay.
         </p> -->
         <br>
       </br>
         </center>
-<form method="POST">
+
+        <div class="row">
+          <div class="col-6">
+            <div class = "hotel-img">
+          <img src = "static/img/hotelArt.png" alt = "hotel art" style = "height: 400px">
+        </div>
+          </div>
+
+          <div class = "col - 6">
+            <center>
+          <form method="POST">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="cities">City</span>
@@ -79,20 +89,31 @@
             </div>
             <input type="text" class="form-control" name = "hotelID" placeholder="Eiffel24" aria-label="hotelID" aria-describedby="basic3" required value={{request.form.hotelID}}>
           </div>
-
+            <center>
+            <button class="btn btn-info" onclick ="alert('Here is the hotel you want')" >Find Hotel
+            </button>
+          </center>
+        </form>
+      </center>
+      </div>
 
       </div>
 
 
   </section>
+
 </div>
 
-  </section>
-  <section>
-    <center>
-    <button class="btn btn-info" onclick ="alert('Here is the hotel you want')" >Find Hotel
-    </button>
-  </center>
+    <section id="output">
+      <div class="text-container">
+        <center>
+          <h1 class="coyote-font">Here's your info:</h1>
+        <textarea rows="20" cols="100">
+          
+        </textarea>
+      </center>
+      </div>
+    </section>
 
   </section>
 </form>

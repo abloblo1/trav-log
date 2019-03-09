@@ -12,7 +12,7 @@ html * {
     display: none;
 } */
 .home-bg {
-  background-image: url("img/backgroundLong.png");
+  background-image: url("img/BackgroundFull.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -66,7 +66,10 @@ html * {
 }
 .nav-link {
   color: #FB0300!important;
-  font-size: 24px;
+  font-size: 26px !important;
+}
+.nav-item {
+  font-size: 26px !important;
 }
 
 #first-section {
@@ -79,19 +82,24 @@ html * {
   width: 110%;
 }
 .logo-img {
-  padding-left: 150px;
   padding-right: 0;
-  width: 80%;
+  width: 70% !important;
+}
+.get-started {
+  width: 70% !important;
 }
 .words {
   color: white;
+  font-weight:bold;
   padding-left: 0;
   padding-right: 0;
+  font-size: 26px;
 }
 .special-font {
   font-family: myriad-pro, sans-serif !important;
   color: #1B1464;
   font-weight: bolder;
+  font-size: 26px!important;
 }
 
 #second-section {
@@ -122,18 +130,18 @@ html * {
       -ms-transform: rotate(-10deg);
           transform: rotate(-10deg);
 }
-
-#third-section {
-  padding-left: 700px;
+.responsive {
+  width: 100%;
+  height: auto;
+}
+.vertical {
+  margin-top: 40%;
 }
 
 #flights-section {
 }
 .coyote-font {
   font-family: Coyote !important;
-}
-.container {
-  margin-top: 100px;
 }
 .input-group {
   padding-top: 15px;
@@ -159,6 +167,7 @@ textarea {
   height: 100%;
   font-family: myriad-pro, sans-serif !important;
 }
+
 #carousel {
   width: 100%;
   padding-right: 100px;
@@ -197,8 +206,8 @@ textarea {
 }
 .form-group {
   color: #000080;
-  padding-left: 500px;
-  padding-right: 500px;
+  padding-left: 30%;
+  padding-right: 30%;
 }
 #uploadimage{
 }
@@ -211,4 +220,12 @@ textarea {
 }
 .card-header {
   background-color: #000080;
+}
+#hotel-section {
+}
+.container-fluid {
+  padding-left: 300px
+}
+.hotel-img {
+  padding-left: -300px;
 }

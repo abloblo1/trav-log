@@ -2,7 +2,7 @@
 <html>
 <head>
   <title> Trav-Log/Tourism </title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="static/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
   <link rel="stylesheet" href ="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
@@ -32,7 +32,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('journal')}}"><b>journal</b></a>
           </li>
-          % if loggedIn %}
+          {% if loggedIn %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('logout') }}"><b>log out</b></a>
           </li>

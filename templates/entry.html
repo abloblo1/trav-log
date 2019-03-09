@@ -70,6 +70,10 @@
   <br/>
 
   <form action="" method=post enctype=multipart/form-data>
+  <!-- <div class="form-group">
+    <label for="exampleFormControlInput1" color = "#000080">Journal Entry Title</label>
+    <input type="title" class="form-control" id="title" placeholder="Ex: Spring Break 2019">
+  </div> -->
   <section id = "date">
     <div class="form-group row">
       <label for="example-date-input" class="col-2 col-form-label">Date</label>
@@ -91,6 +95,10 @@
     </center>
     </section>
     <br>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Journal Title</label>
+      <textarea class="form-control" name="title" id="image description" rows="1" value={{request.form.title}}></textarea>
+    </div>
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Journal Entry</label>
     <textarea class="form-control" name="entry" id="image description" rows="3" value={{request.form.entry}}></textarea>

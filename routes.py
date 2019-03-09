@@ -3,7 +3,6 @@ import os
 import uuid
 import io
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-from forms import SignupForm, LoginForm, FlightsForm, JournalForm
 from flask_pymongo import PyMongo
 from werkzeug import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
@@ -107,16 +106,19 @@ def flights():
         destination = request.form['destination']
         departure_date = request.form['departure']
         print(departure_date)
-        flight_info = amadeus.shopping.flight_offers.get(origin=data[origin], destination=data[destination], departureDate=departure_date)
-        for i in range(len(flight_info.data[0]['offerItems'][0]['services'][0]['segments'])):
-            print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure'])
-            print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival'])
-            print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['carrierCode'])
-            print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['number'])
-            output += 'Departure\nAirport: {0}\nDate: {1}\n'.format(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure']['iataCode'], flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure']['at'])
-            output += 'Arrival\nAirport: {0}\nDate: {1}\n'.format(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['iataCode'], flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['at'])
-            output += 'Carrier: {0}'.format(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['carrierCode'])
-            print(output)
+        try:
+            flight_info = amadeus.shopping.flight_offers.get(origin=data[origin], destination=data[destination], departureDate=departure_date)
+            for i in range(len(flight_info.data[0]['offerItems'][0]['services'][0]['segments'])):
+                print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure'])
+                print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival'])
+                print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['carrierCode'])
+                print(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['number'])
+                output += 'Departure\nAirport: {0}\nDate: {1}\n'.format(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure']['iataCode'], flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['departure']['at'])
+                output += 'Arrival\nAirport: {0}\nDate: {1}\n'.format(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['iataCode'], flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['arrival']['at'])
+                output += 'Carrier: {0}'.format(flight_info.data[0]['offerItems'][0]['services'][0]['segments'][i]['flightSegment']['carrierCode'])
+                print(output)
+        except:
+            output = "No such trip exists."
         return render_template('flights.html', loggedIn=True, result=output)
     elif request.method == 'GET':
         return render_template('flights.html', loggedIn=True)
@@ -170,6 +172,7 @@ def entry():
                 journal_image_name = uuid.uuid4().hex
                 mongo.save_file(journal_image_name, journal_image)
                 journal_entry = {
+                    'title': request.form['title'],
                     'date': request.form['date'],
                     'entry': request.form['entry'],
                     'image': journal_image_name
@@ -177,11 +180,11 @@ def entry():
                 client.update_one({'email':session['email']}, {'$push': {'journals': journal_entry}})
             else:
                 flash('Incorrect file type')
-            return render_template('entry.html')
+            return render_template('entry.html', loggedIn=True)
     elif request.method == 'GET':
-        return render_template('entry.html')
+        return render_template('entry.html', loggedIn=True)
     else:
-        return render_template('journal_entry.html')
+        return render_template('entry.html', loggedIn=True)
 
 @app.route("/file/<filename>")
 def file(filename):
@@ -194,15 +197,22 @@ def journal():
     user = mongo.db.users.find_one({'email': session['email']})
     journal = user['journals']
     if request.method == "POST":
+        found = False;
         for i in range(len(journal)):
             if journal[i]['date'] == request.form['date']:
                 journal = journal[i]
+                found = True;
                 break
-        return render_template('journal.html', firstname=user['firstname'], entry=journal['entry'], filename=url_for('file', filename=journal['image']), loggedIn=True)
+        if not found:
+            entry = "Journal Does Not Exist"
+            return render_template('journal.html', firstname=user['firstname'], entry=entry, loggedIn=True)
+        else:
+            entry = journal['entry']
+            return render_template('journal.html', firstname=user['firstname'], entry=entry, filename=url_for('file', filename=journal['image']), date=journal['date'], title=journal['title'], loggedIn=True)
     elif request.method == 'GET':
-        return render_template('journal.html', firstname=user['firstname'], loggedIn = True)
+        return render_template('journal.html', firstname=user['firstname'], title='Post Title', loggedIn = True)
     else:
-        return render_template('journal.html', firstname=user['firstname'], loggedIn = True)
+        return render_template('journal.html', firstname=user['firstname'], title='Post Title', loggedIn = True)
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

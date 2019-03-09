@@ -56,15 +56,15 @@
       <!-- Post Content Column -->
       <div class="col-lg-8">
         <!-- Title -->
-        <div class="card">
-          <h1 class="mt-4">Post Title</h1>
+        <div class="card px-5">
+          <h1 class="mt-4">{{title}}</h1>
           <!-- Author -->
           <p class="lead">
             by {{firstname}}
           </p>
           <hr>
           <!-- Date/Time -->
-          <p>Posted on January 1, 2019</p>
+          <p>Posted on {{date}}</p>
           <hr>
           <!-- Preview Image -->
           <!-- is there a filename? (target destination?) otherwise
@@ -79,34 +79,14 @@
 
         <br/>
 
-        <div class="card">
-          <h1 class="mt-4">Post Title</h1>
-          <!-- Author -->
-          <p class="lead">
-            by Username
-          </p>
-          <hr>
-          <!-- Date/Time -->
-          <p>Posted on December 3, 2018</p>
-          <hr>
-          <!-- Preview Image -->
-          <!-- src="{{url_for('static', filename=journal_image)}}" -->
-          <img class="img-fluid rounded" src="http://placehold.it/900x300">
-          <hr>
-          <!-- Post Content -->
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
-          <hr>
-        </div>
+
 
         <br/>
       </div>
 
       <!-- Sidebar Widgets Column -->
 
-        <div class="col-md-4">
+        <div class="col-md-4" style="margin-top: -25px">
           <!-- Search Widget -->
           <div class="card my-4">
             <h5 class="card-header">Search by Date</h5>
@@ -123,7 +103,7 @@
           </div>
 
         <!-- Side Widget -->
-        <div class="card my-4">
+        <div class="card my-4 pb-3">
           <h5 class="card-header">Create an Entry</h5>
           <center>
           <div class="card-body" style="font-size: 18px">
@@ -136,25 +116,9 @@
           <br/>
           </span>
         </div>
-
-        <!--List of previous 10 entries-->
-        <div class="card my-4">
-          <h5 class="card-header">Past Entries</h5>
-          <center>
-          <div class="card-body">
-            <ol>
-              <li>most recent</li>
-              <li>next recent</li>
-            </ol>
-          </div>
-          <br/>
-          </span>
-        </div>
       </div>
     </div>
   </div>
   </section>
-
-
   </body>
 </html>

@@ -210,7 +210,6 @@ def journal():
         else:
             entry = journal['entry']
             return render_template('journal.html', firstname=user['firstname'], entry=entry, filename=url_for('file', filename=journal['image']), date=journal['date'], title=journal['title'], loggedIn=True)
-        return render_template('journal.html', firstname=user['firstname'], entry=journal['entry'], filename=url_for('file', filename=journal['image']), loggedIn=True)
     elif request.method == 'GET':
         return render_template('journal.html', firstname=user['firstname'], title='Post Title', loggedIn = True)
     else:
